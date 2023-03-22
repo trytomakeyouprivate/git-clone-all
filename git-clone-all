@@ -2,9 +2,10 @@
 
 echo "Clone all Github repos of a specific user."
 
+read -p "Do the repos come from a user or an Organization? (user / orgs) " TYPE
 read -p "Enter the Github username: " USERNAME
 
-CNTX={users}; NAME={USERNAME}; PAGE=1
+CNTX={TYPE}; NAME={USERNAME}; PAGE=1
 curl "https://api.github.com/$CNTX/$NAME/repos?page=$PAGE&per_page=100" |
   grep -e 'clone_url*' |
   cut -d \" -f 4 |
